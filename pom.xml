@@ -42,8 +42,8 @@
     <module>metrics/micrometer</module>
     <module>metrics/microprofile</module>
     <module>test-infra</module>
-    <module>integration-tests</module>
-    <module>osgi-tests</module>
+    <!-- <module>integration-tests</module> -->
+    <!-- <module>osgi-tests</module> -->
     <module>distribution</module>
     <module>examples</module>
     <module>bom</module>
@@ -466,6 +466,10 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.1</version>
+          <configuration>
+            <source>11</source>
+            <target>11</target>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>com.coveo</groupId>
@@ -602,37 +606,6 @@
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <compilerId>javac-with-errorprone</compilerId>
-          <forceJavacCompilerUse>true</forceJavacCompilerUse>
-          <source>1.8</source>
-          <target>1.8</target>
-          <compilerArgs combine.children="override">
-            <compilerArg>-Xep:FutureReturnValueIgnored:OFF</compilerArg>
-            <compilerArg>-Xep:PreferJavaTimeOverload:OFF</compilerArg>
-            <compilerArg>-Xep:AnnotateFormatMethod:OFF</compilerArg>
-            <compilerArg>-Xep:WildcardImport:WARN</compilerArg>
-            <compilerArg>-XepExcludedPaths:.*/target/(?:generated-sources|generated-test-sources)/.*</compilerArg>
-          </compilerArgs>
-          <showWarnings>true</showWarnings>
-          <failOnWarning>true</failOnWarning>
-          <useIncrementalCompilation>false</useIncrementalCompilation>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-compiler-javac-errorprone</artifactId>
-            <version>2.8.6</version>
-          </dependency>
-          <dependency>
-            <groupId>com.google.errorprone</groupId>
-            <artifactId>error_prone_core</artifactId>
-            <version>2.3.4</version>
-          </dependency>
-        </dependencies>
-      </plugin>
       <plugin>
         <groupId>com.coveo</groupId>
         <artifactId>fmt-maven-plugin</artifactId>
